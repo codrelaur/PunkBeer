@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+
+    <!-- <link
+      rel="stylesheet"
+      href="C:\Users\laure\OneDrive\Desktop\First Projects Hunt It\Punk Beer\PunkBeer\resources\bootstrap.min.css.map"
+      crossorigin="anonymous"
+    /> -->
+    <link rel="stylesheet" href="../styles/beer.css" />
+    <link rel="stylesheet" href="../styles/base.css" />
+
+    <title>Punk Beer Details</title>
+  </head>
+
+  <body>
+    <!------------------------------- NavBar ------------------------->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img class="logo" src="../resources/Logo fara background .png" />
+          <h1>Punk Beer</h1>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-responsive">
+          <ul class="navbar-nav ml-auto justify-content-end">
+            <li class="nav-item active">
+              <button class="nav-link btn btn-light">
+                <a href="../index.html">Home</a>
+              </button>
+            </li>
+            <li class="nav-item active">
+              <button class="nav-link btn btn-primary">
+                <a class="beers" href="./beers.html">Beers</a>
+              </button>
+            </li>
+            <li class="nav-item active">
+              <button class="nav-link btn btn-light">
+                <a href="./favorites.html">Favorites</a>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <hr />
+    <!------------------------------- Description ------------------------->
+
+    <div class="grid">
+      <div class="row g-0">
+        <div class="col-sm-12">
+          <div class="card mb-3">
+            <div class="row">
+              <div class="col-md-4">
+                <img
+                  class="rounded-start"
+                  src="../resources/default_beer.png"
+                  width="600px"
+                />
+              </div>
+
+              <div class="col-md-8 justify-content-center mt-4">
+                <h1>sadasdasdasdasd</h1>
+                <h2 class="mb-4">sadadsadasd</h2>
+                <p>
+                  Our flagship beer that kick started the craft beer revolution.
+                  This is James and Martin's original take on an American IPA,
+                  subverted with punchy New Zealand hops. Layered with new world
+                  hops to create an all-out riot of grapefruit, pineapple and
+                  lychee before a spiky, mouth-puckering bitter finish.",
+                </p>
+                <p class="text-secondary mb-0">
+                  First Brewed: <span>21/2021</span>
+                </p>
+                <p class="text-secondary mb-0">
+                  Alcohol content: <span>7.8%</span>
+                </p>
+                <p class="text-secondary mb-5">EBC unit: <span>10</span></p>
+
+                <h2>Ingredients</h2>
+                <h5>Malts: <span>Sup, supf, fuasp</span></h5>
+                <h5>Hops: <span>Sup, supf, fuasp</span></h5>
+                <h5 class="mb-5">Yeast: <span>Sup, supf, fuasp</span></h5>
+
+                <h2>Food Pairing</h2>
+                <p class="mb-0">
+                  Our flagship beer that kick started the craft beer revolution.
+                </p>
+
+                <p class="mb-0">
+                  This is James and Martin's original take on an American IPA,
+                  subverted with punchy New Zealand hops. Layered with new world
+                </p>
+                <p class="mb-5">
+                  hops to create an all-out riot of grapefruit, pineapple and
+                  lychee before a spiky, mouth-puckering bitter finish.",
+                </p>
+                <div
+                  class="d-grid gap-2 d-md-flex justify-content-md-end mb-5 mx-2"
+                >
+                  <button
+                    class="btn btn-secondary me-md-2"
+                    type="button"
+                    id="back"
+                  >
+                    Back
+                  </button>
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    id="addtofavorites"
+                  >
+                    Add to favorites
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../scripts/beer.js"></script>
+  </body>
+</html>

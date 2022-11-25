@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+
+    <!-- <link
+      rel="stylesheet"
+      href="C:\Users\laure\OneDrive\Desktop\First Projects Hunt It\Punk Beer\PunkBeer\resources\bootstrap.min.css.map"
+      crossorigin="anonymous"
+    /> -->
+    <link rel="stylesheet" href="styles/home.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+
+    <title>Punk Beer Homepage</title>
+  </head>
+
+  <body>
+    <!------------------------------- NavBar ------------------------->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            class="logo"
+            src="../PunkBeer/resources/Logo fara background .png"
+          />
+          <h1>Punk Beer</h1>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-responsive">
+          <ul class="navbar-nav ml-auto justify-content-end">
+            <li class="nav-item active">
+              <button class="nav-link btn btn-primary">
+                <a class="home" href="index.html">Home</a>
+              </button>
+            </li>
+            <li class="nav-item active">
+              <button class="nav-link btn btn-light">
+                <a href="pages/beers.html">Beers</a>
+              </button>
+            </li>
+            <li class="nav-item active">
+              <button class="nav-link btn btn-light">
+                <a href="pages/favorites.html">Favorites</a>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <hr />
+    <!------------------------------- Random Beer ------------------------->
+    <div class="grid text-center">
+      <div class="row">
+        <div class="col-sm-12" id="randombeer">
+          <div class="card">
+            <div class="row">
+              <div class="col-sm-9">
+                <h1 id="headText"></h1>
+                <p id="paragraph"></p>
+                <button type="button" class="btn btn-primary" id="viewmore">
+                  <a class="view" href="pages/beer.html"> View More </a>
+                </button>
+              </div>
+              <div class="col-sm-3">
+                <img class="card-image" src="" width="100px" id="randomImage" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!------------------------------- Description ------------------------->
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card">
+            <h2 class="card-title">Detailed view with useful information</h2>
+            <p class="card-text">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card">
+            <h2 class="card-title">Discover your taste</h2>
+            <p class="card-text">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card">
+            <h2 class="card-title">Remember your favorites</h2>
+            <p class="card-text">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="scripts/home.js"></script>
+  </body>
+</html>

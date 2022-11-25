@@ -1,0 +1,29 @@
+/*====================================================================== Buttons=============================*/
+#remove {
+  font-size: 25px;
+  padding: 5px 15px;
+  background-color: rgb(189, 26, 26);
+}
+#back {
+  width: 100px;
+}
+.favorites {
+  color: aliceblue;
+}
+/* ================================================= IMAGES ======================================= */
+/* ================================================== Cards ===============================*/
+.card {
+  padding: 80px 50px 80px 50px;
+  width: 1500px;
+  height: 350px;
+  text-align: start;
+  border: none;
+  gap: 20px;
+  border: 1px solid rgb(233, 232, 232);
+  margin-top: 50px;
+}
+.grid {
+  margin-bottom: 50px;
+}
+
+/* ===============================================NAVIGATION BAR ===============================*/
