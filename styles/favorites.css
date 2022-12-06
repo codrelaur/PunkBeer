@@ -14,8 +14,6 @@
 /* ================================================== Cards ===============================*/
 .card {
   padding: 80px 50px 80px 50px;
-  width: 1500px;
-  height: 350px;
   text-align: start;
   border: none;
   gap: 20px;

@@ -10,8 +10,9 @@
 .btn-light {
   color: blue;
 }
-.btn:hover {
-  background-color: dodgerblue;
+.btn-light:hover,
+.btn-primary:hover {
+  background-color: rgb(17, 143, 226);
 }
 a {
   text-decoration: none;
@@ -45,4 +46,8 @@ h1 {
   display: inline;
   font-weight: 700;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.hidden {
+  display: none;
 }

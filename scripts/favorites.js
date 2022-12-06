@@ -1,13 +1,37 @@
 window.addEventListener("DOMContentLoaded", onLoad);
 
 function onLoad() {
-  const favoriteBeers = localStorage.getItem("Favorites");
-  const favoriteArray = JSON.parse(favoriteBeers);
-  renderBeers(favoriteArray);
+  fetch("https://api.punkapi.com/v2/beers")
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      renderBeers(jsonResponse);
+      selectButtons(jsonResponse);
+    });
+}
+
+function selectButtons(beers) {
+  const rButtons = document.querySelectorAll(".removeFavorites");
+
+  rButtons.forEach((button, i) => {
+    button.addEventListener("click", () => removeFromFavorites(beers[i]));
+  });
+}
+
+// avand Id ul ca si parametru verificam care item din local storage array are id ul respectiv si facem remove la item
+
+function removeFromFavorites(orice) {
+  const favorites = localStorage.getItem("Favorites");
+  const arrayFav = favorites ? JSON.parse(favorites) : [];
+  const removeButton = document.querySelector(".codebar" + orice.id);
+
+  removeButton.removeEventListener("click", removeFromFavorites());
+  localStorage.removeItem("Favorites", JSON.stringify(arrayFav));
 }
 
 function renderBeers(information) {
   const allDiv = document.querySelector("#description");
+  const lStorage = localStorage.getItem("Favorites");
+  const viewMore = localStorage.getItem("beerID");
 
   information.forEach((item) => {
     const card = document.createElement("div");
@@ -19,15 +43,22 @@ function renderBeers(information) {
       item.tagline,
       item.description,
       item.abv,
-      item.ebc
+      item.ebc,
+      item.id
     );
 
-    card.setAttribute("class", "card p-3");
+    card.setAttribute("class", "card p-3 codebar" + item.id);
     allDiv.appendChild(card);
   });
 }
 
-function createBeer(card, img, name, tagline, description, abv, ebc) {
+// aici folosind paratmetrul id verificam daca un item cu acest id exista in local storage
+// daca exista return true daca nu return false
+function verifyLocalStorage() {
+  return true;
+}
+
+function createBeer(card, img, name, tagline, description, abv, ebc, id) {
   let div = document.createElement("div");
   let imgDiv = document.createElement("div");
   let subDiv = document.createElement("div");
@@ -54,11 +85,14 @@ function createBeer(card, img, name, tagline, description, abv, ebc) {
   </p>
   <p class="text-secondary">EBC unit: <span>${ebc}</span></p>
 </div>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button class="btn btn-primary" type="button" id="remove">
-                Remove from favorites
-              </button>
-            </div> `;
+<div class="col-sm-6 d-flex justify-content-end">
+<button class="btn btn-primary" onclick='localStorage.setItem("beerID", "${id}"); location.assign("file:///C:/Users/laure/OneDrive/Desktop/First%20Projects%20Hunt%20It/Punk%20Beer/PunkBeer/pages/beer.html")' type="button"> 
+View More
+  </button>
+      <button class="btn btn-danger removeFavorites" type="button">
+        Remove from Favorites
+      </button>
+</div>`;
 
   div.appendChild(imgDiv);
   subDiv.appendChild(title);

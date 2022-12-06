@@ -4,7 +4,7 @@
   color: aliceblue;
 }
 .btn:hover {
-  background-color: dodgerblue;
+  background-color: rgb(98, 107, 117);
 }
 #addtofavorites {
   font-size: 25px;

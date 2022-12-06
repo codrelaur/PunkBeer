@@ -6,24 +6,55 @@ function onLoad() {
     .then((jsonResponse) => {
       renderBeers(jsonResponse);
       selectButtons(jsonResponse);
+      console.log(jsonResponse);
     });
 }
 
 function selectButtons(beers) {
   const buttons = document.querySelectorAll(".addtofavorites");
+  const rButtons = document.querySelectorAll(".removeFavorites");
 
   buttons.forEach((button, i) => {
     button.addEventListener("click", () => addToFavorites(beers[i]));
+  });
+
+  rButtons.forEach((button, i) => {
+    button.addEventListener("click", () => removeFromFavorites(beers[i]));
   });
 }
 
 // avand Id ul ca si parametru verificam care item din local storage array are id ul respectiv si facem remove la item
 
-function removeFromFavorites() {}
+function removeFromFavorites(orice) {
+  const favorites = localStorage.getItem("Favorites");
+  const arrayFav = favorites ? JSON.parse(favorites) : [];
+  const removeButton = document.querySelector(
+    ".codebar" + orice.id + " .removeFavorites"
+  );
+  const addButton = document.querySelector(
+    ".codebar" + orice.id + " .addtofavorites"
+  );
+  removeButton.classList.add("hidden");
+  addButton.classList.remove("hidden");
+  console.log(arrayFav);
+
+  const newArray = arrayFav.filter((y) => y.id != orice.id);
+  console.log(newArray);
+
+  localStorage.setItem("Favorites", JSON.stringify(newArray));
+}
 
 function addToFavorites(altceva) {
   const lsFavorites = localStorage.getItem("Favorites");
-  const arrayFavorites = JSON.parse(lsFavorites);
+  const arrayFavorites = lsFavorites ? JSON.parse(lsFavorites) : [];
+  const addButton = document.querySelector(
+    ".codebar" + altceva.id + " .addtofavorites"
+  );
+  const removeButton = document.querySelector(
+    ".codebar" + altceva.id + " .removeFavorites"
+  );
+  removeButton.classList.remove("hidden");
+  addButton.classList.add("hidden");
 
   arrayFavorites.push(altceva);
   localStorage.setItem("Favorites", JSON.stringify(arrayFavorites));
@@ -34,6 +65,7 @@ function renderBeers(information) {
 
   information.forEach((item) => {
     const card = document.createElement("div");
+    card.setAttribute("class", "card p-3 codebar" + item.id);
 
     createBeer(
       card,
@@ -42,21 +74,23 @@ function renderBeers(information) {
       item.tagline,
       item.description,
       item.abv,
-      item.ebc
+      item.ebc,
+      item.id
     );
 
-    card.setAttribute("class", "card p-3");
     allDiv.appendChild(card);
   });
 }
 
 // aici folosind paratmetrul id verificam daca un item cu acest id exista in local storage
 // daca exista return true daca nu return false
-function verifyLocalStorage() {
-  return true;
+function verifyLocalStorage(beerID) {
+  const ls = localStorage.getItem("Favorites");
+  const arrayLS = ls ? JSON.parse(ls) : [];
+  return arrayLS.some((x) => x.id === beerID);
 }
 
-function createBeer(card, img, name, tagline, description, abv, ebc) {
+function createBeer(card, img, name, tagline, description, abv, ebc, id) {
   let div = document.createElement("div");
   let imgDiv = document.createElement("div");
   let subDiv = document.createElement("div");
@@ -84,21 +118,23 @@ function createBeer(card, img, name, tagline, description, abv, ebc) {
   <p class="text-secondary">EBC unit: <span>${ebc}</span></p>
 </div>
 <div class="col-sm-6 d-flex justify-content-end">
-  <button class="btn btn-primary" type="button"> 
+  <button class="btn btn-primary" onclick='localStorage.setItem("beerID", "${id}"); location.assign("file:///C:/Users/laure/OneDrive/Desktop/First%20Projects%20Hunt%20It/Punk%20Beer/PunkBeer/pages/beer.html")' type="button"> 
   View More
   </button>
-  ${
-    verifyLocalStorage()
-      ? `<button class="btn btn-danger removeFavorites" type="button">
-        Remove from Favorites
-      </button>`
-      : `<button
-    class="btn btn-primary addtofavorites"
+    <button class="btn btn-danger removeFavorites ${
+      verifyLocalStorage(id) ? "" : "hidden"
+    } " type="button">
+      Remove from Favorites
+    </button>
+    <button
+    class="btn btn-primary addtofavorites ${
+      verifyLocalStorage(id) ? "hidden" : ""
+    }"
     type="button"
     >
    Add to favorites
-    </button>`
-  }
+    </button>
+  
 </div>`;
 
   div.appendChild(imgDiv);
@@ -111,3 +147,13 @@ function createBeer(card, img, name, tagline, description, abv, ebc) {
   div.appendChild(subDiv);
   card.appendChild(div);
 }
+// export function createBeer(
+//   card,
+//   img,
+//   name,
+//   tagline,
+//   description,
+//   abv,
+//   ebc,
+//   id
+// )  as createBeer (){}
