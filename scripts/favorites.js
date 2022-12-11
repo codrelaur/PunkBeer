@@ -1,12 +1,11 @@
 window.addEventListener("DOMContentLoaded", onLoad);
 
 function onLoad() {
-  fetch("https://api.punkapi.com/v2/beers")
-    .then((response) => response.json())
-    .then((jsonResponse) => {
-      renderBeers(jsonResponse);
-      selectButtons(jsonResponse);
-    });
+  const lStorage = localStorage.getItem("Favorites");
+  const arrayfavorite = lStorage ? JSON.parse(lStorage) : [];
+
+  renderBeers(arrayfavorite);
+  selectButtons(arrayfavorite);
 }
 
 function selectButtons(beers) {
@@ -22,16 +21,16 @@ function selectButtons(beers) {
 function removeFromFavorites(orice) {
   const favorites = localStorage.getItem("Favorites");
   const arrayFav = favorites ? JSON.parse(favorites) : [];
-  const removeButton = document.querySelector(".codebar" + orice.id);
 
-  removeButton.removeEventListener("click", removeFromFavorites());
-  localStorage.removeItem("Favorites", JSON.stringify(arrayFav));
+  const newArray = arrayFav.filter((y) => y.id != orice.id);
+  console.log(newArray);
+
+  localStorage.setItem("Favorites", JSON.stringify(newArray));
+  location.reload();
 }
 
 function renderBeers(information) {
   const allDiv = document.querySelector("#description");
-  const lStorage = localStorage.getItem("Favorites");
-  const viewMore = localStorage.getItem("beerID");
 
   information.forEach((item) => {
     const card = document.createElement("div");
