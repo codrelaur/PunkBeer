@@ -6,13 +6,13 @@ function onLoad() {
     .then((jsonResponse) => {
       renderBeers(jsonResponse);
       selectButtons(jsonResponse);
-      console.log(jsonResponse);
     });
 }
 
 function selectButtons(beers) {
   const buttons = document.querySelectorAll(".addtofavorites");
   const rButtons = document.querySelectorAll(".removeFavorites");
+  console.log(beers);
 
   buttons.forEach((button, i) => {
     button.addEventListener("click", () => addToFavorites(beers[i]));
@@ -36,10 +36,8 @@ function removeFromFavorites(orice) {
   );
   removeButton.classList.add("hidden");
   addButton.classList.remove("hidden");
-  console.log(arrayFav);
 
   const newArray = arrayFav.filter((y) => y.id != orice.id);
-  console.log(newArray);
 
   localStorage.setItem("Favorites", JSON.stringify(newArray));
 }
@@ -64,6 +62,7 @@ function renderBeers(information) {
   const allDiv = document.querySelector("#description");
 
   information.forEach((item) => {
+    console.log(item);
     const card = document.createElement("div");
     card.setAttribute("class", "card p-3 codebar" + item.id);
 
