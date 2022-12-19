@@ -1,5 +1,7 @@
 window.addEventListener("DOMContentLoaded", onLoad);
 
+//
+//
 function onLoad() {
   const lStorage = localStorage.getItem("beerID");
   const number = parseInt(lStorage);
@@ -11,57 +13,65 @@ function onLoad() {
       selectButtons(jsonResponse);
     });
 }
-
-function selectButtons(beers) {
+//
+//
+//
+function selectButtons(beerCards) {
   const buttons = document.querySelectorAll(".addtofavorites");
   const rButtons = document.querySelectorAll(".removeFavorites");
   buttons.forEach((button, i) => {
-    button.addEventListener("click", () => addToFavorites(beers[i]));
+    button.addEventListener("click", () => addToFavorites(beerCards[i]));
   });
 
   rButtons.forEach((button, i) => {
-    button.addEventListener("click", () => removeFromFavorites(beers[i]));
+    button.addEventListener("click", () => removeFromFavorites(beerCards[i]));
   });
 }
-// avand Id ul ca si parametru verificam care item din local storage array are id ul respectiv si facem remove la item
 
-function removeFromFavorites(orice) {
+//
+//
+//
+function removeFromFavorites(beer) {
   const favorites = localStorage.getItem("Favorites");
   const arrayFav = favorites ? JSON.parse(favorites) : [];
   const removeButton = document.querySelector(
-    ".codebar" + orice.id + " .removeFavorites"
+    ".codebar" + beer.id + " .removeFavorites"
   );
   const addButton = document.querySelector(
-    ".codebar" + orice.id + " .addtofavorites"
+    ".codebar" + beer.id + " .addtofavorites"
   );
   removeButton.classList.add("hidden");
   addButton.classList.remove("hidden");
-  // console.log(arrayFav);
 
-  const newArray = arrayFav.filter((y) => y.id != orice.id);
-  // console.log(newArray);
+  const newArray = arrayFav.filter((y) => y.id != beer.id);
 
   localStorage.setItem("Favorites", JSON.stringify(newArray));
 }
 
-function addToFavorites(altceva) {
+//
+//
+//
+function addToFavorites(beers) {
   const lsFavorites = localStorage.getItem("Favorites");
   const arrayFavorites = lsFavorites ? JSON.parse(lsFavorites) : [];
   const addButton = document.querySelector(
-    ".codebar" + altceva.id + " .addtofavorites"
+    ".codebar" + beers.id + " .addtofavorites"
   );
   const removeButton = document.querySelector(
-    ".codebar" + altceva.id + " .removeFavorites"
+    ".codebar" + beers.id + " .removeFavorites"
   );
   removeButton.classList.remove("hidden");
   addButton.classList.add("hidden");
 
-  arrayFavorites.push(altceva);
+  arrayFavorites.push(beers);
   localStorage.setItem("Favorites", JSON.stringify(arrayFavorites));
 }
 
+// This function creates a card and using a callback function it creates html elements and fills them with specific values
+// Parameters: information - object; information.etc - every item described on lines 106-107
+// Returns a filled card with received data from JSON
 function renderBeers(information) {
-  const allDiv = document.querySelector(".parent");
+  const parent = document.querySelector(".parent");
   const card = document.createElement("div");
   card.setAttribute("class", "row codebar" + information[0].id);
 
@@ -80,8 +90,7 @@ function renderBeers(information) {
     information[0].food_pairing,
     information[0].id
   );
-  allDiv.appendChild(card);
-  console.log(information[0].ingredients.malt);
+  parent.appendChild(card);
 }
 
 // This function checks if there is an object in the LocalStorage Array named "Favorites" which has the "ID" property equal to the parameter
@@ -90,17 +99,23 @@ function renderBeers(information) {
 function verifyLocalStorage(beerID) {
   const ls = localStorage.getItem("Favorites");
   const arrayLS = ls ? JSON.parse(ls) : [];
-  return arrayLS.some((x) => x.id === beerID);
+  return arrayLS.some((element) => element.id === beerID);
 }
 
+// This function takes a specific array made out of objects and returns the wanted property of every object in that array
+// Parameters: malt - Array; object - Object
+// Returns a string
 function determineMalts(malt) {
-  // console.log(malt);
-  const solution = malt.map((x) => {
-    return x.name;
+  const nameString = malt.map((object) => {
+    return object.name;
   });
-  return solution;
+  return nameString;
 }
 
+// This function creates different elements in our html and sets specific attributes to each element and makes sure that each parameter will store a specific type of value
+// Parameters: card - string ; img - string; name - string; tagline - string; description - string; brewed - string; abv - string; ebc - string; malts - array;
+//             hops - array; yeast - string; foodpair - array; id - number;
+// Returns the created html elements
 function createBeer(
   card,
   img,
@@ -124,26 +139,23 @@ function createBeer(
   let br = document.createElement("br");
   let p = document.createElement("p");
   let br2 = document.createElement("br");
-  let row = document.createElement("div");
+  let newRow = document.createElement("div");
   let ingridients = document.createElement("div");
-  let foodPairing = document.createElement("div");
+  let foodDiv = document.createElement("div");
   let alcoholInfo = document.createElement("div");
 
-  // console.log(malts);
-  console.log(foodpair);
-
-  foodPairing.setAttribute("class", "foodClass");
+  foodDiv.setAttribute("class", "foodClass");
   parentDiv.setAttribute("class", "row");
-  subDiv.setAttribute("class", "col-md-8 justify-content-center mt-4");
-  row.setAttribute("class", "row");
-  imgDiv.setAttribute("class", "col-md-4");
+  subDiv.setAttribute("class", "col-md-8 col-xs-8 justify-content-center mt-4");
+  newRow.setAttribute("class", "row");
+  imgDiv.setAttribute("class", "col-sm-4 col-xs-4");
   subtitle.setAttribute("class", "mb-4");
   ingridients.innerHTML = `<h2>Ingredients</h2>
   <h5>Malt: <span>${determineMalts(malts)}</span></h5>
   <h5>Hops: <span>${hops ? hops : hops + ","}</span></h5>
   <h5 class="mb-5">Yeast: <span>${yeast}</span></h5>`;
 
-  foodPairing.innerHTML = `<h2>Food Pairing</h2>
+  foodDiv.innerHTML = `<h2>Food Pairing</h2>
     ${foodpair
       .map((food) => {
         return `<p class='mb-0'>${food}
@@ -156,7 +168,8 @@ function createBeer(
   <img
                   class="rounded-start mx-5 my-5"
                   src= ${img ? img : "../resources/default_beer.png"} 
-                  width="200px"/>
+                   width="200px"
+                  height="auto"/>
                   `;
   title.innerHTML = name;
   subtitle.innerHTML = tagline;
@@ -169,7 +182,7 @@ function createBeer(
   </p>
   <p class="text-secondary mb-5">EBC unit: <span>${ebc}</span></p>
 </div>`;
-  row.innerHTML = `
+  newRow.innerHTML = `
 <div class="d-grid  d-md-flex justify-content-md-end mb-5 mx-2">
 <button 
                     onclick="history.back()"
@@ -203,8 +216,8 @@ function createBeer(
   subDiv.appendChild(br2);
   subDiv.appendChild(alcoholInfo);
   subDiv.appendChild(ingridients);
-  subDiv.appendChild(foodPairing);
-  subDiv.appendChild(row);
+  subDiv.appendChild(foodDiv);
+  subDiv.appendChild(newRow);
   parentDiv.appendChild(subDiv);
   card.appendChild(parentDiv);
 }

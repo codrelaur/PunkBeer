@@ -16,13 +16,11 @@ function selectButtons(beers) {
   });
 }
 
-// avand Id ul ca si parametru verificam care item din local storage array are id ul respectiv si facem remove la item
-
-function removeFromFavorites(orice) {
+function removeFromFavorites(beer) {
   const favorites = localStorage.getItem("Favorites");
-  const arrayFav = favorites ? JSON.parse(favorites) : [];
+  const arrayFavorite = favorites ? JSON.parse(favorites) : [];
 
-  const newArray = arrayFav.filter((y) => y.id != orice.id);
+  const newArray = arrayFavorite.filter((y) => y.id != beer.id);
   console.log(newArray);
 
   localStorage.setItem("Favorites", JSON.stringify(newArray));
@@ -51,8 +49,6 @@ function renderBeers(information) {
   });
 }
 
-// aici folosind paratmetrul id verificam daca un item cu acest id exista in local storage
-// daca exista return true daca nu return false
 function verifyLocalStorage() {
   return true;
 }
@@ -66,11 +62,11 @@ function createBeer(card, img, name, tagline, description, abv, ebc, id) {
   let br = document.createElement("br");
   let p = document.createElement("p");
   let br2 = document.createElement("br");
-  let row = document.createElement("div");
+  let newRow = document.createElement("div");
 
   div.setAttribute("class", "row d-flex align-items-center");
   subDiv.setAttribute("class", "col-sm-10");
-  row.setAttribute("class", "row");
+  newRow.setAttribute("class", "row");
   imgDiv.setAttribute("class", "col-sm-2");
 
   imgDiv.innerHTML = `
@@ -78,14 +74,14 @@ function createBeer(card, img, name, tagline, description, abv, ebc, id) {
   title.innerHTML = name;
   subtitle.innerHTML = tagline;
   p.innerHTML = description;
-  row.innerHTML = `<div class="col-sm-6"> 
+  newRow.innerHTML = `<div class="col-sm-6"> 
   <p class="mb-0 text-secondary"> 
    Alcohol Content: <span>${abv}</span> 
   </p>
   <p class="text-secondary">EBC unit: <span>${ebc}</span></p>
 </div>
 <div class="col-sm-6 d-flex justify-content-end">
-<button class="btn btn-primary" onclick='localStorage.setItem("beerID", "${id}"); location.assign("file:///C:/Users/laure/OneDrive/Desktop/First%20Projects%20Hunt%20It/Punk%20Beer/PunkBeer/pages/beer.html")' type="button"> 
+<button class="btn btn-primary" onclick='localStorage.setItem("beerID", "${id}"); location.assign("../pages/beer.html")' type="button"> 
 View More
   </button>
       <button class="btn btn-danger removeFavorites" type="button">
@@ -99,7 +95,7 @@ View More
   subDiv.appendChild(br);
   subDiv.appendChild(p);
   subDiv.appendChild(br2);
-  subDiv.appendChild(row);
+  subDiv.appendChild(newRow);
   div.appendChild(subDiv);
   card.appendChild(div);
 }
