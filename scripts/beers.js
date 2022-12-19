@@ -101,22 +101,22 @@ function createBeer(card, img, name, tagline, description, abv, ebc, id) {
   let row = document.createElement("div");
 
   div.setAttribute("class", "row d-flex align-items-center");
-  subDiv.setAttribute("class", "col-sm-10");
+  subDiv.setAttribute("class", "col-xs-10 col-sm-10");
   row.setAttribute("class", "row");
-  imgDiv.setAttribute("class", "col-sm-2");
+  imgDiv.setAttribute("class", "col-xs-2 col-sm-2");
 
   imgDiv.innerHTML = `
   <img src= ${img} width="60px"/>`;
   title.innerHTML = name;
   subtitle.innerHTML = tagline;
   p.innerHTML = description;
-  row.innerHTML = `<div class="col-sm-6"> 
+  row.innerHTML = `<div class="col-xs-6 col-sm-6"> 
   <p class="mb-0 text-secondary"> 
    Alcohol Content: <span>${abv}</span> 
   </p>
   <p class="text-secondary">EBC unit: <span>${ebc}</span></p>
 </div>
-<div class="col-sm-6 d-flex justify-content-end">
+<div class="col-xs-6 col-sm-6 d-flex justify-content-end">
   <button class="btn btn-primary" onclick='localStorage.setItem("beerID", "${id}"); location.assign("file:///C:/Users/laure/OneDrive/Desktop/First%20Projects%20Hunt%20It/Punk%20Beer/PunkBeer/pages/beer.html")' type="button"> 
   View More
   </button>

@@ -23,7 +23,12 @@ a {
   width: 70px;
 }
 /* ================================================== Cards ===============================*/
-
+body {
+  min-width: 400px;
+  width: auto !important;
+  width: 400px;
+  background-color: #dbdbdb;
+}
 /* ===============================================NAVIGATION BAR ===============================*/
 .navbar-collapse {
   flex-grow: inherit;
