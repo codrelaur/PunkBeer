@@ -70,7 +70,7 @@ function createBeer(card, img, name, tagline, description, abv, ebc, id) {
   imgDiv.setAttribute("class", "col-sm-2");
 
   imgDiv.innerHTML = `
-  <img src= ${img ? img : "./resources/default_beer.png"} width="60px/>`;
+  <img src= ${img ? img : "../resources/default_beer.png"} width="60px/>`;
   title.innerHTML = name;
   subtitle.innerHTML = tagline;
   p.innerHTML = description;
