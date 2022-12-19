@@ -65,12 +65,12 @@ function createBeer(card, img, name, tagline, description, abv, ebc, id) {
   let newRow = document.createElement("div");
 
   div.setAttribute("class", "row d-flex align-items-center");
-  subDiv.setAttribute("class", "col-sm-10");
+  subDiv.setAttribute("class", "col-sm-10 col-xs-10");
   newRow.setAttribute("class", "row");
-  imgDiv.setAttribute("class", "col-sm-2");
+  imgDiv.setAttribute("class", "col-sm-2 col-xs-2");
 
   imgDiv.innerHTML = `
-  <img  src= ${img}  width="60px/>`;
+  <img src= ${img ? img : "../resources/default_beer.png"} width="60px"/>`;
   title.innerHTML = name;
   subtitle.innerHTML = tagline;
   p.innerHTML = description;

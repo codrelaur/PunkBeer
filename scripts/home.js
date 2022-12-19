@@ -14,7 +14,7 @@ function fillRandomBeer(data) {
   const parent = document.querySelector(".parent");
   let id = document.createElement("div");
 
-  id.innerHTML = `<button class="btn btn-primary viewmore" onclick='localStorage.setItem("beerID", "${data[0].id}"); location.assign("../pages/beer.html")'>View More</button>`;
+  id.innerHTML = `<button class="btn btn-primary viewmore" onclick='localStorage.setItem("beerID", "${data[0].id}"); location.assign("./pages/beer.html")'>View More</button>`;
 
   title.innerHTML = data[0].name;
   information.innerHTML = data[0].description;
