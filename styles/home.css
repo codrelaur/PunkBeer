@@ -62,10 +62,10 @@
   justify-content: center;
   align-content: center;
 }
-html {
+/* html {
   margin-left: 200px;
   margin-right: 200px;
-}
+} */
 hr {
   margin-top: 2px;
 }

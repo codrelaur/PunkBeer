@@ -171,6 +171,7 @@ function createBeer(
                   class="rounded-start mx-5 my-5"
                   src= ${img ? img : "../resources/default_beer.png"} 
                    width="200px"
+                   width='auto'
                   height="auto"/>
                   `;
   title.innerHTML = name;

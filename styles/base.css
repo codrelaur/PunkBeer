@@ -6,6 +6,7 @@
   color: aliceblue;
   margin: 10px;
   border-radius: 0.6rem;
+  width: auto;
 }
 .btn-light {
   color: blue;
@@ -40,10 +41,10 @@ body {
   justify-content: center;
   align-content: center;
 }
-html {
+/* html {
   margin-left: 200px;
   margin-right: 200px;
-}
+} */
 hr {
   margin-top: 2px;
 }
