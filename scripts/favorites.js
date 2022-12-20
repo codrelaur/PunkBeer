@@ -1,5 +1,8 @@
 window.addEventListener("DOMContentLoaded", onLoad);
 
+// This function takes information from the Local Storage and using callback functions it creates cards with the wanted information
+// Parameters: arrayfavorite - array;
+// Returns the cards filled with the right information
 function onLoad() {
   const lStorage = localStorage.getItem("Favorites");
   const arrayfavorite = lStorage ? JSON.parse(lStorage) : [];
@@ -8,6 +11,9 @@ function onLoad() {
   selectButtons(arrayfavorite);
 }
 
+// This function adds event Listeners to each specified HTML button
+// Parameters: beerCards - object; button - string; i - number
+// Returns a new function that's using the callback function described on line 25 taking the paramter 'i' as the index
 function selectButtons(beers) {
   const rButtons = document.querySelectorAll(".removeFavorites");
 
@@ -16,6 +22,9 @@ function selectButtons(beers) {
   });
 }
 
+// This function checks if there is an object in the Local Storage using the object's ID to determine wether if it can be removed or not
+//Parameters: beer - object;
+//Returns a button, depending if the wanted object exists in the Local Storage or not and removes the object if the object's button pressed whilst reloading the page
 function removeFromFavorites(beer) {
   const favorites = localStorage.getItem("Favorites");
   const arrayFavorite = favorites ? JSON.parse(favorites) : [];
@@ -26,6 +35,10 @@ function removeFromFavorites(beer) {
   localStorage.setItem("Favorites", JSON.stringify(newArray));
   location.reload();
 }
+
+// This function creates cards and using a callback function it creates HTML elements and fills each card with specific values
+// Parameters: information - object; item - object
+// Returns a filled card with received data from the API
 
 function renderBeers(information) {
   const allDiv = document.querySelector("#description");
@@ -49,10 +62,10 @@ function renderBeers(information) {
   });
 }
 
-function verifyLocalStorage() {
-  return true;
-}
-
+// This function creates different elements in our HTML and sets specific attributes to each element and makes sure that each parameter will store a specific type of value
+// Parameters: card - string ; img - string; name - string; tagline - string; description - string; brewed - string; abv - string; ebc - string;
+//              id - number;
+// Returns the created html elements
 function createBeer(card, img, name, tagline, description, abv, ebc, id) {
   let div = document.createElement("div");
   let imgDiv = document.createElement("div");

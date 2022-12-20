@@ -1,4 +1,8 @@
 window.addEventListener("DOMContentLoaded", onLoad);
+
+// This function takes information from the URL to show a random beer
+// Parameters: response - object; jsonResponse - object
+// returns a resolved promise that resolves to the response object
 function onLoad() {
   fetch("https://api.punkapi.com/v2/beers/random")
     .then((response) => response.json())
@@ -7,6 +11,9 @@ function onLoad() {
     });
 }
 
+// This function fills the selcted HTML elements with the specific object properties and sets the wanted attributes
+// Parameters: data - object;
+// Returns the selected infromation from the API object
 function fillRandomBeer(data) {
   const title = document.querySelector("#headText");
   const information = document.querySelector("#paragraph");

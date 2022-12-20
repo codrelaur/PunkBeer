@@ -1,7 +1,8 @@
 window.addEventListener("DOMContentLoaded", onLoad);
 
-//
-//
+// This function takes information from the URL and adds the object's ID in order to show the right selected page
+// Parameters: response - object; jsonResponse - object
+// returns a resolved promise that resolves to the response object
 function onLoad() {
   const lStorage = localStorage.getItem("beerID");
   const number = parseInt(lStorage);
@@ -13,9 +14,10 @@ function onLoad() {
       selectButtons(jsonResponse);
     });
 }
-//
-//
-//
+
+// This function adds event Listeners to each specified HTML button
+// Parameters: beerCards - object; button - string; i - number
+// Returns a new function that's using the callback functions described on lines 32 and 52 taking parameter 'i' as the index of the object parameter 'beerCards'
 function selectButtons(beerCards) {
   const buttons = document.querySelectorAll(".addtofavorites");
   const rButtons = document.querySelectorAll(".removeFavorites");
@@ -28,9 +30,9 @@ function selectButtons(beerCards) {
   });
 }
 
-//
-//
-//
+//This function checks if there is an object in the Local Storage using the object's ID to determine wether if it can be removed or not
+//Parameter: beer - object;
+//Returns a button, depending if the wanted object exists in the Local Storage or not
 function removeFromFavorites(beer) {
   const favorites = localStorage.getItem("Favorites");
   const arrayFav = favorites ? JSON.parse(favorites) : [];
@@ -48,9 +50,9 @@ function removeFromFavorites(beer) {
   localStorage.setItem("Favorites", JSON.stringify(newArray));
 }
 
-//
-//
-//
+// This function checks if there is an object in the Local Storage using the object's ID to determine wether if it can be stored or not
+//Parameters: beers - object;
+//Returns a button, depending if the wanted object exists in the Local Storage or not
 function addToFavorites(beers) {
   const lsFavorites = localStorage.getItem("Favorites");
   const arrayFavorites = lsFavorites ? JSON.parse(lsFavorites) : [];
@@ -67,9 +69,9 @@ function addToFavorites(beers) {
   localStorage.setItem("Favorites", JSON.stringify(arrayFavorites));
 }
 
-// This function creates a card and using a callback function it creates html elements and fills them with specific values
+// This function creates a card and using a callback function it creates HTML elements and fills them with specific values
 // Parameters: information - object; information.etc - every item described on lines 106-107
-// Returns a filled card with received data from JSON
+// Returns a filled card with received data from the API
 function renderBeers(information) {
   const parent = document.querySelector(".parent");
   const card = document.createElement("div");
@@ -112,7 +114,7 @@ function determineMalts(malt) {
   return nameString;
 }
 
-// This function creates different elements in our html and sets specific attributes to each element and makes sure that each parameter will store a specific type of value
+// This function creates different elements in our HTML and sets specific attributes to each element and makes sure that each parameter will store a specific type of value
 // Parameters: card - string ; img - string; name - string; tagline - string; description - string; brewed - string; abv - string; ebc - string; malts - array;
 //             hops - array; yeast - string; foodpair - array; id - number;
 // Returns the created html elements
